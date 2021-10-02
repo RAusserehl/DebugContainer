@@ -1,5 +1,5 @@
 
-FROM alpine:3.12
+FROM alpine:3.14
 
 # Labels
 LABEL maintainer="rene.ausserehl@bdosecurity.de"
@@ -20,8 +20,8 @@ LABEL org.label-schema.vendor="BDO Cyber Security"
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -v"
 
-
-
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk --update add --no-cache 
 RUN apk add --update \
     bash \
     curl \
@@ -50,12 +50,13 @@ RUN apk add --update \
     mailcap \
     groff \
     bash-completion \
-    kubectl \
     sslscan \
     wbox \
     knock 
 
 RUN pip3 install --upgrade pip setuptools httpie 
+
+RUN apk del .build-deps
 
 
 CMD [ "tail", "-f", "/dev/null" ]
