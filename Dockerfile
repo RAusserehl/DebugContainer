@@ -1,4 +1,5 @@
-FROM ubuntu:
+
+FROM alpine:3.12
 
 # Labels
 LABEL maintainer="rene.ausserehl@bdosecurity.de"
@@ -19,4 +20,42 @@ LABEL org.label-schema.vendor="BDO Cyber Security"
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -v"
 
-CMD ["/mnt/tool/tool.sh"]
+
+
+RUN apk add --update \
+    bash \
+    curl \
+    jq \
+    busybox-extras \
+    bind-tools \
+    tcpdump \
+    openssl \
+    vim \
+    nmap \
+    iputils \
+    tcptraceroute \
+    strace \
+    bind-tools \
+    socat \
+    netcat-openbsd \
+    mtr \
+    iperf \
+    tcpdump \
+    busybox-extras \
+    openssl \
+    ca-certificates \
+    python3 \
+    less \
+    py-pip \
+    mailcap \
+    groff \
+    bash-completion \
+    kubectl \
+    sslscan \
+    wbox \
+    knock 
+
+RUN pip3 install --upgrade pip setuptools httpie 
+
+
+CMD [ "tail", "-f", "/dev/null" ]
