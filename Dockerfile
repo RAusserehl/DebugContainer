@@ -51,7 +51,6 @@ RUN apk add --update \
     groff \
     bash-completion \
     sslscan \
-    wbox \
     knock 
 
 RUN pip3 install --upgrade pip setuptools httpie 
