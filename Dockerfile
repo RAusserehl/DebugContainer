@@ -21,8 +21,7 @@ LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -v"
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-RUN apk --update add --no-cache 
-RUN apk add --update \
+RUN apk --update add --no-cache \
     bash \
     curl \
     jq \
@@ -55,7 +54,7 @@ RUN apk add --update \
 
 RUN pip3 install --upgrade pip setuptools httpie 
 
-RUN apk del .build-deps
+
 
 
 CMD [ "tail", "-f", "/dev/null" ]
