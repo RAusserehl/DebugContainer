@@ -20,8 +20,8 @@ LABEL org.label-schema.vendor="BDO Cyber Security"
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -v"
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-RUN apk --update add --no-cache \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
+&& apk --update add --no-cache \
     bash \
     curl \
     jq \
@@ -51,8 +51,7 @@ RUN apk --update add --no-cache \
     bash-completion \
     sslscan \
     knock 
-
-RUN pip3 install --upgrade pip setuptools httpie 
+&& pip3 install --upgrade pip setuptools httpie 
 
 
 
