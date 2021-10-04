@@ -3,6 +3,7 @@ FROM alpine:3.14
 
 # Labels
 LABEL maintainer="rene.ausserehl@bdosecurity.de"
+LABEL name="debugcontainer"
 ARG BUILD_DATE
 ARG VCS_REF
 ARG BUILD_VERSION
@@ -20,8 +21,7 @@ LABEL org.label-schema.vendor="BDO Cyber Security"
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -v"
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
-&& apk --update add --no-cache \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk --update add --no-cache \
     bash \
     curl \
     jq \
@@ -50,8 +50,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     groff \
     bash-completion \
     sslscan \
-    knock 
-&& pip3 install --upgrade pip setuptools httpie 
+    knock && pip3 install --upgrade pip setuptools httpie 
 
 
 
